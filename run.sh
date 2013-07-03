@@ -1,0 +1,27 @@
+if [ ! -n "$WERCKER_LOGGLY_CHECK_USERNAME" ]; then
+  error 'Please specify username property'
+  exit 1
+fi
+
+if [ ! -n "$WERCKER_LOGGLY_CHECK_PASSWORD" ]; then
+  error 'Please specify password property'
+  exit 1
+fi
+
+if [ ! -n "$WERCKER_LOGGLY_CHECK_SUBDOMAIN" ]; then
+  error 'Please specify subdomain property'
+  exit 1
+fi
+
+if [ ! -n "$WERCKER_LOGGLY_CHECK_QUERY" ]; then
+  error 'Please specify query property'
+  exit 1
+fi
+if [ ! -n "$WERCKER_LOGGLY_CHECK_FROM" ]; then
+  error 'Please specify from property'
+  exit 1
+fi
+
+cd "$WERCKER_STEP_ROOT"
+curl --user $WERCKER_LOGGLY_CHECK_USERNAME:$WERCKER_LOGGLY_CHECK_PASSWORD https://$WERCKER_LOGGLY_CHECK_SUBDOMAIN.loggly.com/api/search?q=$WERCKER_LOGGLY_CHECK_QUERY&from=$WERCKER_LOGGLY_CHECK_FROM > report.json
+python main.py
