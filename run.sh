@@ -23,5 +23,8 @@ if [ ! -n "$WERCKER_LOGGLY_CHECK_FROM" ]; then
 fi
 
 cd "$WERCKER_STEP_ROOT"
+echo "do loggly search"
 curl --user $WERCKER_LOGGLY_CHECK_USERNAME:$WERCKER_LOGGLY_CHECK_PASSWORD https://$WERCKER_LOGGLY_CHECK_SUBDOMAIN.loggly.com/api/search?q=$WERCKER_LOGGLY_CHECK_QUERY&from=$WERCKER_LOGGLY_CHECK_FROM > report.json
+echo "cat report.json"
+cat report.json
 python main.py

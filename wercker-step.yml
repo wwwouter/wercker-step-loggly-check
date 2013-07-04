@@ -1,5 +1,5 @@
 name: loggly-check
-version: 0.0.1
+version: 0.0.2
 description: Checks loggly for errors
 properties:
   username:
