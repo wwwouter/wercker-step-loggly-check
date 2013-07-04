@@ -2,8 +2,6 @@ import sys,json
 
 
 json_data = open('report.json')
-print "json_data:\n"
-print json_data
 data = json.load(json_data)
 
 if data["numFound"] == 0:
