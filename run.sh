@@ -25,7 +25,7 @@ fi
 cd "$WERCKER_STEP_ROOT"
 echo "do loggly search"
 echo "https://$WERCKER_LOGGLY_CHECK_SUBDOMAIN.loggly.com/api/search?q=$WERCKER_LOGGLY_CHECK_QUERY&from=$WERCKER_LOGGLY_CHECK_FROM"
-curl --user $WERCKER_LOGGLY_CHECK_USERNAME:$WERCKER_LOGGLY_CHECK_PASSWORD https://$WERCKER_LOGGLY_CHECK_SUBDOMAIN.loggly.com/api/search\?q\=$WERCKER_LOGGLY_CHECK_QUERY\&from\=$WERCKER_LOGGLY_CHECK_FROM > report.json
+curl --user $WERCKER_LOGGLY_CHECK_USERNAME:$WERCKER_LOGGLY_CHECK_PASSWORD https://$WERCKER_LOGGLY_CHECK_SUBDOMAIN.loggly.com/api/search\?q\=$WERCKER_LOGGLY_CHECK_QUERY\&from\=$WERCKER_LOGGLY_CHECK_FROM > $WERCKER_STEP_TEMP/report.json
 echo "result"
-cat report.json
-python main.py
+cat $WERCKER_STEP_TEMP/report.json
+python main.py $WERCKER_STEP_TEMP/report.json

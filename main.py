@@ -1,7 +1,8 @@
 import sys,json
 
+reportPath = str(sys.argv[1])
 
-json_data = open('report.json')
+json_data = open(reportPath)
 data = json.load(json_data)
 
 if data["numFound"] == 0:
